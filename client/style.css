@@ -1,0 +1,27 @@
+:root { --bg:#0b0f17; --card:#121a28; --fg:#e6edf6; --muted:#94a3b8; --acc:#6ee7ff; --warn:#ff6b6b; }
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(1200px 600px at 20% 0%,#132036,transparent),var(--bg);color:var(--fg);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:rgba(0,0,0,.2);backdrop-filter:blur(6px);position:sticky;top:0}
+h1{margin:0;font-weight:800;letter-spacing:.5px}
+#roomCode{font-weight:700;color:var(--acc)}
+.card{max-width:980px;margin:24px auto;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.04),transparent),var(--card);border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+input{padding:10px 12px;border-radius:10px;border:1px solid #233044;background:#0e1624;color:var(--fg);outline:none}
+button{padding:10px 14px;border:none;border-radius:10px;background:linear-gradient(180deg,#1f9df0,#1776f0);color:#fff;font-weight:700;cursor:pointer;transition:transform .06s ease,filter .2s}
+button:hover{filter:brightness(1.1)} button:active{transform:scale(.98)}
+.warn{background:linear-gradient(180deg,#ff6b6b,#f53d3d)}
+.badge{padding:8px 12px;border-radius:999px;background:#0b2a3a;color:#c9f1ff}
+.timer{font-weight:900;font-size:48px;letter-spacing:1px;text-shadow:0 6px 24px rgba(0,0,0,.5)}
+.view.hidden,.panel.hidden,.host.hidden,.hidden{display:none}
+.hint{color:var(--muted);margin-top:8px}
+.players{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:16px}
+.player{background:#0d1523;border:1px solid #1e2a42;border-radius:12px;padding:12px;position:relative}
+.player .name{font-weight:800}
+.hearts{display:flex;gap:4px;margin-top:8px}
+.heart{width:18px;height:18px;background:radial-gradient(circle at 30% 30%,#ff4b6e,#b4002e);clip-path:path("M12 21s-8-4.438-8-11a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 6.562-8 11-8 11z");opacity:1;transition:opacity .3s}
+.heart.dead{opacity:.25;filter:grayscale(80%)}
+.muted{color:var(--muted)}
+.panel{margin-top:16px;padding:12px;border:1px solid #1e2a42;border-radius:12px;background:#0d1523}
+.voteTargets{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.voteTargets button{background:#1b2a44}
+.title{font-size:20px;font-weight:800;margin-bottom:8px}
+.errors{margin-top:12px;color:#ff9aa8;font-weight:700}

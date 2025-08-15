@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Der dümmste fliegt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./style.css" rel="stylesheet">
+  <!-- Firebase SDKs (modular v9 compat über Namespaces, damit ohne Build nutzbar) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>🎤 Der dümmste fliegt</h1>
+    <div id="roomCode"></div>
+  </header>
+
+  <main class="card">
+    <!-- LOBBY -->
+    <section id="lobbyView" class="view">
+      <div class="row">
+        <input id="nameInput" placeholder="Dein Name">
+        <button id="createBtn">Neue Lobby</button>
+        <input id="joinCodeInput" placeholder="Lobby‑Code (z. B. ABC123)">
+        <button id="joinBtn">Beitreten</button>
+      </div>
+      <div class="hint">Host erstellt Lobby & teilt Code. 3 Herzen. 3‑Minuten‑Runden. Abstimmung anonym.</div>
+    </section>
+
+    <!-- GAME -->
+    <section id="gameView" class="view hidden">
+      <div class="row">
+        <div id="stateBadge" class="badge">Lobby</div>
+        <div id="timer" class="timer">03:00</div>
+        <div id="hostPanel" class="host hidden">
+          <button id="startBtn">Spiel starten / nächste Runde</button>
+          <button id="revealBtn" class="warn hidden">Ergebnis veröffentlichen</button>
+          <div class="row">
+            <label>Rundenlänge (Sek.):</label>
+            <input type="number" id="roundSeconds" value="180" min="30" max="900">
+            <button id="applySettings">Übernehmen</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="players" class="players"></div>
+
+      <div id="votingPanel" class="panel hidden">
+        <div>Wähle anonym, wer die „dümmste“ Antwort hatte:</div>
+        <div id="voteTargets" class="voteTargets"></div>
+        <div id="voteStatus" class="muted"></div>
+      </div>
+
+      <div id="revealPanel" class="panel hidden">
+        <div id="revealInfo" class="title">Ergebnis</div>
+        <div id="tiebreak" class="hidden">
+          <div class="muted">Gleichstand – Host muss entscheiden:</div>
+          <div id="tiebreakTargets" class="voteTargets"></div>
+        </div>
+      </div>
+
+      <div id="finalPanel" class="panel hidden">
+        <div class="title">🏁 Finale</div>
+        <div id="finalNames" class="muted"></div>
+        <div class="row">
+          <input id="finalP1Wrong" type="number" min="0" max="15" placeholder="P1 falsch (0–15)">
+          <input id="finalP2Wrong" type="number" min="0" max="15" placeholder="P2 falsch (0–15)">
+          <button id="finalSubmit">Finale auswerten</button>
+        </div>
+      </div>
+
+      <div id="endedPanel" class="panel hidden">
+        <div class="title">🎉 Spielende!</div>
+      </div>
+
+      <div id="errors" class="errors"></div>
+    </section>
+  </main>
+<!-- Deine Firebase Config (lokale Datei, gitignored) -->
+<script src="./firebase-config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
