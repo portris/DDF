@@ -1,4 +1,6 @@
 // firebase-config.js
+// Tipp: Wenn du diese Datei NICHT committen willst, füge sie zu .gitignore hinzu.
+// Für GitHub Pages muss sie aber irgendwo öffentlich erreichbar sein (Repo oder externe URL).
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyAhPBEnmddMPUzCz_l4ht1l0g3zxQbT8dg",
   authDomain: "derduemmstefliegt-deee7.firebaseapp.com",

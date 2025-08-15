@@ -8,6 +8,7 @@ h1{margin:0;font-weight:800;letter-spacing:.5px}
 input{padding:10px 12px;border-radius:10px;border:1px solid #233044;background:#0e1624;color:var(--fg);outline:none}
 button{padding:10px 14px;border:none;border-radius:10px;background:linear-gradient(180deg,#1f9df0,#1776f0);color:#fff;font-weight:700;cursor:pointer;transition:transform .06s ease,filter .2s}
 button:hover{filter:brightness(1.1)} button:active{transform:scale(.98)}
+button.ghost{background:#233044}
 .warn{background:linear-gradient(180deg,#ff6b6b,#f53d3d)}
 .badge{padding:8px 12px;border-radius:999px;background:#0b2a3a;color:#c9f1ff}
 .timer{font-weight:900;font-size:48px;letter-spacing:1px;text-shadow:0 6px 24px rgba(0,0,0,.5)}

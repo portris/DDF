@@ -1,14 +1,18 @@
 <!doctype html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   <title>Der dümmste fliegt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="./style.css" rel="stylesheet">
-  <!-- Firebase SDKs (modular v9 compat über Namespaces, damit ohne Build nutzbar) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="./style.css" rel="stylesheet" />
+  <!-- Firebase SDKs (compat, damit ohne Build nutzbar) -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <!-- Deine (ggf. gitignor’ed) Config: muss VOR app.js geladen werden -->
+  <script src="./firebase-config.js"></script>
+  <!-- Haupt-App -->
+  <script defer src="./app.js"></script>
 </head>
 <body>
   <header class="topbar">
@@ -17,18 +21,39 @@
   </header>
 
   <main class="card">
-    <!-- LOBBY -->
-    <section id="lobbyView" class="view">
+    <!-- AUTH VIEW -->
+    <section id="authView" class="view">
+      <div class="title">Anmeldung</div>
       <div class="row">
-        <input id="nameInput" placeholder="Dein Name">
+        <input id="authEmail" type="email" placeholder="E-Mail" />
+        <input id="authPass" type="password" placeholder="Passwort (min. 6 Zeichen)" />
+      </div>
+      <div class="row">
+        <button id="loginBtn">Einloggen</button>
+        <button id="signupBtn">Registrieren</button>
+        <button id="resetBtn" class="ghost">Passwort zurücksetzen</button>
+      </div>
+      <div class="hint">Nach der Anmeldung kannst du eine Lobby erstellen oder beitreten.</div>
+      <div id="authError" class="errors"></div>
+    </section>
+
+    <!-- LOBBY VIEW -->
+    <section id="lobbyView" class="view hidden">
+      <div class="row">
+        <span id="userBadge" class="badge"></span>
+        <button id="logoutBtn" class="ghost">Abmelden</button>
+      </div>
+      <div class="row">
+        <input id="nameInput" placeholder="Dein Anzeigename (für die Lobby)" />
         <button id="createBtn">Neue Lobby</button>
-        <input id="joinCodeInput" placeholder="Lobby‑Code (z. B. ABC123)">
+        <input id="joinCodeInput" placeholder="Lobby‑Code (z. B. ABC123)" />
         <button id="joinBtn">Beitreten</button>
       </div>
       <div class="hint">Host erstellt Lobby & teilt Code. 3 Herzen. 3‑Minuten‑Runden. Abstimmung anonym.</div>
+      <div id="lobbyError" class="errors"></div>
     </section>
 
-    <!-- GAME -->
+    <!-- GAME VIEW -->
     <section id="gameView" class="view hidden">
       <div class="row">
         <div id="stateBadge" class="badge">Lobby</div>
@@ -38,7 +63,7 @@
           <button id="revealBtn" class="warn hidden">Ergebnis veröffentlichen</button>
           <div class="row">
             <label>Rundenlänge (Sek.):</label>
-            <input type="number" id="roundSeconds" value="180" min="30" max="900">
+            <input type="number" id="roundSeconds" value="180" min="30" max="900" />
             <button id="applySettings">Übernehmen</button>
           </div>
         </div>
@@ -64,8 +89,8 @@
         <div class="title">🏁 Finale</div>
         <div id="finalNames" class="muted"></div>
         <div class="row">
-          <input id="finalP1Wrong" type="number" min="0" max="15" placeholder="P1 falsch (0–15)">
-          <input id="finalP2Wrong" type="number" min="0" max="15" placeholder="P2 falsch (0–15)">
+          <input id="finalP1Wrong" type="number" min="0" max="15" placeholder="P1 falsch (0–15)" />
+          <input id="finalP2Wrong" type="number" min="0" max="15" placeholder="P2 falsch (0–15)" />
           <button id="finalSubmit">Finale auswerten</button>
         </div>
       </div>
@@ -77,8 +102,5 @@
       <div id="errors" class="errors"></div>
     </section>
   </main>
-<!-- Deine Firebase Config (lokale Datei, gitignored) -->
-<script src="./firebase-config.js"></script>
-  <script src="./app.js"></script>
 </body>
 </html>
